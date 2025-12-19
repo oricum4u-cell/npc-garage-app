@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-11-27T20:24:56.568Z",
+  "syncSource": "Desktop",
+  "data": {
+    "users": [
+      {
+        "username": "Tiberiu",
+        "password": "password",
+        "role": "ADMIN",
+        "id": "user-1761591032900",
+        "lastLogin": "2025-11-26T19:53:58.720Z",
+        "profilePicture": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzAwNDQzMCIvPjxyZWN0IHg9IjI1IiB5PSIyNSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiMxMGI5ODEiLz48cmVjdCB4PSIzMCIgeT0iNDAiIHdpZHRoPSIxNSIgaGVpZ2h0PSIxMCIgZmlsbD0iIzAwNDQzMCIvPjxyZWN0IHg9IjU1IiB5PSI0MCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjEwIiBmaWxsPSIjMDA0NDMwIi8+PHJlY3QgeD0iMzUiIHk9IjY1IiB3aWR0aD0iMzAiIGhlaWdodD0iNSIgZmlsbD0iIzAwNDQzMCIvPjxjaXJjbGUgY3g9IjI1IiBjeT0iNTUiIHI9IjUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI3NSIgY3k9IjU1IiByPSI1IiBmaWxsPSIjZmZmIi8+PC9zdmc+",
+        "email": "oricum4u@gmail.com"
+      },
+      {
+        "username": "adrian",
+        "password": "password",
+        "role": "MECHANIC",
+        "id": "user-1763209289902",
+        "lastLogin": "2025-11-26T13:37:17.947Z",
+        "email": "corneanu.adryan@yahoo.com",
+        "profilePicture": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzI3MjcyYSIvPjxwYXRoIGQ9Ik0yNSAzNUg3NVY1MEg4MFY1NUg3NUM3NSA2OC44MDcgNjMuODA3IDgwIDUwIDgwQzM2LjE5MyA4MCAyNSA2OC44MDcgMjUgNTVWMzVaIiBmaWxsPSIjZjk3MzE2Ii8+PHJlY3QgeD0iMjAiIHk9IjMwIiB3aWR0aD0iNjAiIGhlaWdodD0iMTAiIHJ4PSI1IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTM1IDY1QzM1IDY1IDQwIDc1IDUwIDc1QzYwIDc1IDY1IDY1IDY1IDY1IiBzdHJva2U9IiMyNzI3MmEiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjwvc3ZnPg=="
+      },
+      {
+        "username": "Dan",
+        "email": "dan_mecanic@gmail.com",
+        "password": "password",
+        "role": "MECHANIC",
+        "profilePicture": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzE1MTkzMSIvPjxwYXRoIGQ9Ik01MCAyNUMzNi4xOTMgMjUgMjUgMzYuMTkzIDI1IDUwQzI1IDYzLjgwNyAzNi4xOTMgNzUgNTAgNzVDNjMuODA3IDc1IDc1IDYzLjgwNyA3NSA1MEM3NSAzNi4xOTMgNjMuODA3IDI1IDUwIDI1WiIgZmlsbD0iIzA2YjZkNCIvPjxwYXRoIGQ9Ik01MCA1NUM0MyAxMDUgMjUgODUgMjUgODVINzVDNzUgODUgNTcgMTA1IDUwIDU1WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==",
+        "id": "user-1764003248097",
+        "lastLogin": "2025-11-24T16:54:08.097Z"
+      }
+    ]
+  }
+}

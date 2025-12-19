@@ -1,0 +1,9 @@
+{
+  "name": "NPC Garage",
+  "description": "An application for managing motorcycle service estimates, allowing users to create, view, edit, and print detailed service orders. Includes an AI-powered diagnostic assistant to help identify potential issues.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

@@ -1,0 +1,376 @@
+
+import { Estimate, PredefinedLabor, StockItem, Mechanic, Appointment, EstimateStatus, Promotion, PromotionType, JobKit, WorkshopBay, Supplier, PurchaseOrder, OrderStatus, Feedback, ServiceRequest, ServiceRequestStatus } from '../types.ts';
+
+export const MECHANICS_MOCK: Mechanic[] = [
+    { id: 'mech-1', name: 'Tiberiu Stancu' },
+    { id: 'mech-2', name: 'Mihai Popescu' },
+];
+
+export const PREDEFINED_LABOR_ITEMS_MOCK: PredefinedLabor[] = [
+    { id: 'pl-1', description: 'Schimb Ulei + Filtru', rate: 150 },
+    { id: 'pl-2', description: 'Schimb Plăcuțe Frână (1 etrier)', rate: 80 },
+    { id: 'pl-3', description: 'Schimb Kit Lanț', rate: 250 },
+    { id: 'pl-4', description: 'Înlocuire Anvelopă', rate: 100 },
+];
+
+export const STOCK_ITEMS_MOCK: StockItem[] = [
+    { id: 'si-1', name: 'Ulei Motul 7100 10W40 (1L)', sku: 'MOT7100-10W40', quantity: 20, price: 55, supplier: 'Motodis', lowStockThreshold: 5, category: 'Uleiuri', location: 'Raft A1' },
+    { id: 'si-2', name: 'Filtru Ulei Hiflofiltro HF204', sku: 'HF204', quantity: 15, price: 30, supplier: 'Bardi Auto', lowStockThreshold: 5, category: 'Filtre', location: 'Raft B2' },
+    { id: 'si-3', name: 'Plăcuțe Frână EBC FA296HH', sku: 'EBC-FA296HH', quantity: 8, price: 120, supplier: 'Motodis', lowStockThreshold: 2, category: 'Frânare', location: 'Dulap C' },
+    { id: 'si-4', name: 'Kit Lanț DID ZVM-X', sku: 'DID-525-ZVMX', quantity: 3, price: 750, supplier: 'Moto-Mag', lowStockThreshold: 1, category: 'Transmisie', location: 'Raft D1' },
+];
+
+export const ESTIMATES_MOCK: Estimate[] = [
+    {
+        id: 'est-1',
+        estimateNumber: 'NPC-0001',
+        date: '2024-05-20',
+        customerName: 'Alexandru Ion',
+        customerPhone: '0722123456',
+        customerEmail: 'alex.ion@email.com',
+        motorcycleMake: 'Yamaha',
+        motorcycleModel: 'MT-07',
+        motorcycleYear: 2022,
+        motorcycleVin: 'JYARM34E0NAXXXXXX',
+        mileageIn: 12500,
+        services: 'Revizie anuală, schimb ulei și filtru.',
+        parts: [
+            { id: 'p-1', name: 'Ulei Motul 7100 10W40 (1L)', description: 'Ulei sintetic premium', quantity: 3, price: 65, stockId: 'si-1' },
+            { id: 'p-2', name: 'Filtru Ulei Hiflofiltro HF204', description: '', quantity: 1, price: 40, stockId: 'si-2' },
+        ],
+        labor: [{ id: 'l-1', description: 'Schimb Ulei + Filtru', hours: 1, rate: 150 }],
+        status: EstimateStatus.COMPLETED,
+        mechanicIds: ['mech-1'],
+        laborDiscount: 10,
+        partsDiscount: 5,
+        discountReason: 'Promoție de început de sezon.',
+        payments: [
+            {
+                id: 'pay-1',
+                date: '2024-05-19',
+                amount: 100,
+                method: 'CASH',
+                notes: 'Avans piese'
+            }
+        ],
+        feedbackId: 'fb-1',
+    },
+    {
+        id: 'est-13',
+        estimateNumber: 'NPC-0013',
+        date: '2024-06-01',
+        customerName: 'Client Nou',
+        customerPhone: '0755987654',
+        customerEmail: 'client.nou@email.com',
+        motorcycleMake: 'Honda',
+        motorcycleModel: 'Africa Twin',
+        motorcycleYear: 2023,
+        motorcycleVin: 'JHFSD09A7PAXXXXXX',
+        mileageIn: 1500,
+        services: 'Prima revizie.',
+        parts: [],
+        labor: [],
+        status: EstimateStatus.COMPLETED,
+        mechanicIds: ['mech-2'],
+        feedbackId: 'fb-2',
+    },
+    {
+        id: 'est-2',
+        estimateNumber: 'NPC-0002',
+        date: '2024-05-22',
+        customerName: 'Alex Lax',
+        customerPhone: '0744123456',
+        customerEmail: 'alex.lax@email.com',
+        motorcycleMake: 'Benelli',
+        motorcycleModel: 'BN 125',
+        motorcycleYear: 2022,
+        motorcycleVin: 'ZBNxxxxxxxxxxxxx',
+        mileageIn: 4500,
+        services: 'Verificare generala.',
+        parts: [],
+        labor: [],
+        status: EstimateStatus.DRAFT,
+        mechanicIds: ['mech-2'],
+    },
+    {
+        id: 'est-3',
+        estimateNumber: 'NPC-0003',
+        date: '2024-05-23',
+        customerName: 'Marius Georgescu',
+        customerPhone: '0755123456',
+        customerEmail: 'marius.g@email.com',
+        motorcycleMake: 'Kawasaki',
+        motorcycleModel: 'Ninja 400',
+        motorcycleYear: 2022,
+        motorcycleVin: 'JKAEX400GPDXXXXXX',
+        mileageIn: 5100,
+        services: 'Clientul acuză un zgomot la frâna față. Verificare și posibil schimb plăcuțe.',
+        parts: [],
+        labor: [{ id: 'l-3', description: 'Diagnostic sistem frânare', hours: 0.5, rate: 180 }],
+        status: EstimateStatus.DRAFT,
+        mechanicIds: ['mech-1'],
+    },
+    {
+        id: 'est-4',
+        estimateNumber: 'NPC-0004',
+        date: '2024-05-24',
+        customerName: 'Pedro',
+        customerPhone: '0756111222',
+        customerEmail: 'pedro@email.com',
+        motorcycleMake: 'Kawasaki',
+        motorcycleModel: 'KXF250',
+        motorcycleYear: 2023,
+        motorcycleVin: 'JKAxxxxxxxxxxxxx',
+        mileageIn: 150,
+        services: 'Schimb ulei motor.',
+        parts: [],
+        labor: [],
+        status: EstimateStatus.DRAFT,
+        mechanicIds: ['mech-1', 'mech-2'],
+    },
+    {
+        id: 'est-9',
+        estimateNumber: 'NPC-0009',
+        date: '2024-05-25',
+        customerName: 'Ionita Antonio',
+        customerPhone: '0756333444',
+        customerEmail: 'antonio@email.com',
+        motorcycleMake: 'Honda',
+        motorcycleModel: 'CBR 125 R',
+        motorcycleYear: 2018,
+        motorcycleVin: 'JHFxxxxxxxxxxxxx',
+        mileageIn: 18000,
+        services: 'Inlocuire kit lant.',
+        parts: [],
+        labor: [],
+        status: EstimateStatus.DRAFT,
+        mechanicIds: ['mech-2'],
+    },
+    {
+        id: 'est-12',
+        estimateNumber: 'NPC-0012',
+        date: '2024-05-26',
+        customerName: 'Eugen Soare',
+        customerPhone: '0756555666',
+        customerEmail: 'eugen.s@email.com',
+        motorcycleMake: 'Yamaha',
+        motorcycleModel: 'MT09',
+        motorcycleYear: 2021,
+        motorcycleVin: 'JYAxxxxxxxxxxxxx',
+        mileageIn: 21000,
+        services: 'Schimb anvelopa spate.',
+        parts: [],
+        labor: [],
+        status: EstimateStatus.DRAFT,
+        mechanicIds: ['mech-1'],
+    }
+];
+
+export const APPOINTMENTS_MOCK: Appointment[] = [
+    {
+        id: 'apt-1',
+        date: '2099-01-01', // Set to a future date to ensure "Programări Astăzi" is 0
+        time: '10:00',
+        customerName: 'Radu Popa',
+        motorcycle: 'Kawasaki Z900',
+        description: 'Schimb anvelope',
+        mechanicId: 'mech-1',
+        status: 'Programat'
+    }
+];
+
+export const PROMOTIONS_MOCK: Promotion[] = [
+    {
+        id: 'promo-1',
+        name: 'Revizia de Primăvară',
+        description: 'Pregătește-ți motocicleta pentru noul sezon! Ofertă specială pentru revizii complete.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 15,
+        isActive: true
+    },
+    {
+        id: 'promo-2',
+        name: 'Frâne Sigure',
+        description: 'Reducere la toate piesele din sistemul de frânare (plăcuțe, discuri, lichid).',
+        type: PromotionType.PARTS_PERCENTAGE,
+        value: 10,
+        isActive: true
+    },
+     {
+        id: 'promo-3',
+        name: 'Ofertă de Iarnă',
+        description: 'Reduceri pentru lucrări efectuate în extra-sezon.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 20,
+        isActive: false
+    },
+    {
+        id: 'promo-4',
+        name: 'Schimb Anvelope Fără Stres',
+        description: '10% reducere la manopera pentru schimbul de anvelope.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 10,
+        isActive: true,
+    },
+    {
+        id: 'promo-5',
+        name: 'Kit de Lanț Nou, Viață Nouă',
+        description: 'Primești 5% reducere la achiziția oricărui kit de lanț.',
+        type: PromotionType.PARTS_PERCENTAGE,
+        value: 5,
+        isActive: true,
+    },
+    {
+        id: 'promo-6',
+        name: 'Verificare de Siguranță',
+        description: 'Ofertă specială pentru o verificare completă a punctelor cheie de siguranță.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 25,
+        isActive: false,
+    },
+    {
+        id: 'promo-7',
+        name: 'Adu un Prieten!',
+        description: 'Veniți împreună cu un prieten și primiți amândoi 10% reducere la manoperă.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 10,
+        isActive: true,
+    },
+    {
+        id: 'promo-8',
+        name: 'Pachet Revizie Completă',
+        description: '10% reducere la toate piesele necesare pentru o revizie completă (ulei, filtre).',
+        type: PromotionType.PARTS_PERCENTAGE,
+        value: 10,
+        isActive: true,
+    },
+    {
+        id: 'promo-9',
+        name: 'Lichid de Frână Proaspăt',
+        description: 'Profită de 15% reducere la manopera pentru schimbul lichidului de frână.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 15,
+        isActive: false,
+    },
+    {
+        id: 'promo-10',
+        name: 'Ofertă Studențească',
+        description: 'Ești student? Prezintă carnetul și ai 12% reducere la manoperă.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 12,
+        isActive: true,
+    },
+    {
+        id: 'promo-11',
+        name: 'Pregătire ITP',
+        description: 'Asigură-te că treci ITP-ul din prima! Reducere 10% la manopera de verificare.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 10,
+        isActive: true,
+    },
+    {
+        id: 'promo-12',
+        name: 'Reducere de Sfârșit de Sezon',
+        description: 'Pregătește-ți motocicleta pentru iernat cu 15% reducere la manoperă.',
+        type: PromotionType.LABOR_PERCENTAGE,
+        value: 15,
+        isActive: false,
+    },
+];
+
+export const JOB_KITS_MOCK: JobKit[] = [
+    {
+        id: 'kit-1',
+        name: 'Revizie Anuală Standard',
+        description: 'Include schimb de ulei, filtru de ulei și manoperă.',
+        parts: [
+            { name: 'Ulei Motor 10W40', description: '3 litri', quantity: 3, price: 65 },
+            { name: 'Filtru Ulei', description: 'Compatibil', quantity: 1, price: 40 },
+        ],
+        labor: [
+            { description: 'Schimb Ulei + Filtru', hours: 1, rate: 150 }
+        ]
+    },
+    {
+        id: 'kit-2',
+        name: 'Înlocuire Plăcuțe Frână Față',
+        description: 'Schimb plăcuțe pe ambele etriere față.',
+        parts: [
+            { name: 'Plăcuțe Frână Față Sinterizate', description: 'Set pentru 2 etriere', quantity: 2, price: 150 }
+        ],
+        labor: [
+            { description: 'Schimb Plăcuțe Frână (2 etriere)', hours: 1, rate: 160 }
+        ]
+    }
+];
+
+export const WORKSHOP_BAYS_MOCK: WorkshopBay[] = [
+    { id: 'bay-1', name: 'Elevator', estimateId: 'est-2', status: 'ACTIVE' },
+    { id: 'bay-2', name: 'Banc Lucru I', estimateId: 'est-9', status: 'WAITING' },
+    { id: 'bay-3', name: 'Banc Lucru II', estimateId: 'est-4', status: 'ACTIVE' },
+    { id: 'bay-4', name: 'Zonă Roți', estimateId: 'est-12', status: 'PROBLEM' },
+];
+
+export const SUPPLIERS_MOCK: Supplier[] = [
+    { id: 'supp-1', name: 'Motodis', contactPerson: 'Dan Popescu', phone: '021-111-2222', email: 'contact@motodis.ro', website: 'motodis.ro' },
+    { id: 'supp-2', name: 'Bardi Auto', contactPerson: 'Ana Ionescu', phone: '021-333-4444', email: 'comenzi@bardiauto.ro', website: 'bardiauto.ro' },
+    { id: 'supp-3', name: 'Moto-Mag', phone: '031-555-6666', website: 'moto-mag.ro' },
+];
+
+export const PURCHASE_ORDERS_MOCK: PurchaseOrder[] = [
+    {
+        id: 'po-1',
+        orderNumber: 'CMD-0001',
+        date: '2024-05-15',
+        supplierId: 'supp-1',
+        items: [
+            { id: 'oi-1', name: 'Filtru Ulei Hiflofiltro HF204', sku: 'HF204', quantity: 10, price: 25 },
+            { id: 'oi-2', name: 'Ulei Motul 7100 10W40 (1L)', sku: 'MOT7100-10W40', quantity: 12, price: 48 },
+        ],
+        status: OrderStatus.RECEIVED,
+    },
+    {
+        id: 'po-2',
+        orderNumber: 'CMD-0002',
+        date: '2024-05-28',
+        supplierId: 'supp-2',
+        items: [
+            { id: 'oi-3', name: 'Plăcuțe Frână EBC FA296HH', sku: 'EBC-FA296HH', quantity: 5, price: 90 },
+        ],
+        status: OrderStatus.PLACED,
+    }
+];
+
+export const FEEDBACK_MOCK: Feedback[] = [
+    {
+        id: 'fb-1',
+        estimateId: 'est-1',
+        rating: 5,
+        comment: "Servicii excelente! Foarte mulțumit de revizia anuală. Motocicleta merge ca nouă. Recomand cu încredere!",
+        isPublic: true,
+        date: '2024-05-21',
+    },
+    {
+        id: 'fb-2',
+        estimateId: 'est-13',
+        rating: 4,
+        comment: "Prima revizie a decurs bine. Personal amabil și profesionist. Ar fi fost perfect dacă timpul de așteptare era puțin mai mic.",
+        isPublic: true,
+        date: '2024-06-02',
+    }
+];
+
+export const SERVICE_REQUESTS_MOCK: ServiceRequest[] = [
+    {
+        id: 'sr-1',
+        clientName: 'Andrei Vasile',
+        clientPhone: '0733112233',
+        motorcycleMake: 'BMW',
+        motorcycleModel: 'R1250GS',
+        motorcycleYear: 2021,
+        selectedServices: ['Schimb Ulei + Filtru'],
+        clientObservations: 'Aș dori și o verificare generală a presiunii în anvelope și a plăcuțelor de frână.',
+        status: ServiceRequestStatus.PENDING,
+        requestDate: new Date().toISOString(),
+    }
+];
